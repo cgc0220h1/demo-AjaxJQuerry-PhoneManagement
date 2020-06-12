@@ -1,6 +1,12 @@
-#Get All Phones
+###Get All Phones
 GET http://localhost:8080/api/phones
 Accept: application/json
+
+###Find One Phone Exist
+GET http://localhost:8080/api/phones/1
+
+###Find One Phone Non-exist
+GET http://localhost:8080/api/phones/99999999
 
 
 
