@@ -71,7 +71,7 @@ Content-Type: application/json
 }
 
 ###Delete Exist Phone
-DELETE http://localhost:8080/api/phones/1/delete
+DELETE http://localhost:8080/api/phones/2/delete
 Content-Type: application/json
 
 ###Delete Phone with null id
