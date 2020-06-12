@@ -27,8 +27,6 @@ public class SmartPhoneAPI {
 
     @GetMapping()
     public ResponseEntity<List<SmartPhone>> getAllPhones(@PageableDefault(size = 5, sort = "id") Pageable pageable) throws NotFoundException {
-        System.out.println(pageable.getPageNumber());
-        System.out.println(pageable.getPageSize());
         Page<SmartPhone> phonePage = smartPhoneService.findAll(pageable);
         return new ResponseEntity<>(phonePage.getContent(), HttpStatus.FOUND);
     }
