@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone Manager</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<h2 class="title" style="text-align: center">Danh sách điện thoại</h2>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Tên</td>
+            <td>Hãng</td>
+            <td>Giá</td>
+        </tr>
+        </thead>
+        <tbody id="phone-content">
+        </tbody>
+    </table>
+</div>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8080/api/phones',
+            dataType: 'json',
+            success: function (data) {
+                let html = "";
+                $.each(data, function (index) {
+                    html += "<tr>"
+                    html += "<td>" + data[index].id + "</td>"
+                    html += "<td>" + data[index].brand + "</td>"
+                    html += "<td>" + data[index].model + "</td>"
+                    html += "<td>" + data[index].price + "</td>"
+                    console.log(data[index])
+                    html += "</tr>"
+                    index++;
+                })
+                $("#phone-content").html(html);
+                console.log(html);
+            }
+        });
+    });
+</script>
+</html>
