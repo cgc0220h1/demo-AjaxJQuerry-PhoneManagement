@@ -69,3 +69,15 @@ Content-Type: application/json
   "model": "Ném chó chó chết",
   "price": 0
 }
+
+###Delete Exist Phone
+DELETE http://localhost:8080/api/phones/1/delete
+Content-Type: application/json
+
+###Delete Phone with null id
+DELETE http://localhost:8080/api/phones/delete/
+Content-Type: application/json
+
+###Delete Phone with non exist id
+DELETE http://localhost:8080/api/phones/delete/1
+Content-Type: application/json

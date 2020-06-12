@@ -1,5 +1,6 @@
 package service;
 
+import model.SmartPhone;
 import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -57,6 +57,12 @@ public class SmartPhoneAPI {
         return smartPhoneService.save(phoneFound);
     }
 
+    @DeleteMapping(value = {"/{id}/delete", "/delete/{id}"}, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public SmartPhone deleteOne(@PathVariable("id") Long id) throws NotFoundException, InvalidDataAccessApiUsageException {
+        SmartPhone phoneFound = smartPhoneService.findOne(id);
+        return smartPhoneService.delete(phoneFound);
+    }
+
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleNotFoundException() {
