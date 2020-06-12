@@ -38,8 +38,34 @@ Content-Type: application/json
   "price": 10000000
 }
 
+###Update Exist Phone
+PUT http://localhost:8080/api/phones/update
+Content-Type: application/json
 
+{
+  "id": 1,
+  "brand": "Cục gạch",
+  "model": "Ném chó chó chết",
+  "price": 0
+}
 
+###Update Phone with null id
+PUT http://localhost:8080/api/phones/update
+Content-Type: application/json
 
+{
+  "brand": "Cục gạch",
+  "model": "Ném chó chó chết",
+  "price": 0
+}
 
+###Update Phone with non exist id
+PUT http://localhost:8080/api/phones/update
+Content-Type: application/json
 
+{
+  "id" : 9999,
+  "brand": "Cục gạch",
+  "model": "Ném chó chó chết",
+  "price": 0
+}

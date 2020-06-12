@@ -3,6 +3,7 @@ package api;
 import javassist.tools.web.BadHttpRequest;
 import model.SmartPhone;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -46,12 +47,22 @@ public class SmartPhoneAPI {
         return smartPhoneService.save(smartPhone);
     }
 
+    @PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public SmartPhone updateOne(@RequestBody SmartPhone smartPhone) throws NotFoundException, InvalidDataAccessApiUsageException {
+        SmartPhone phoneFound = smartPhoneService.findOne(smartPhone.getId());
+        phoneFound.setBrand(smartPhone.getBrand());
+        phoneFound.setModel(smartPhone.getBrand());
+        phoneFound.setPrice(smartPhone.getPrice());
+        return smartPhoneService.save(phoneFound);
+    }
+
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleNotFoundException() {
     }
 
-    @ExceptionHandler(BadHttpRequest.class)
+    @ExceptionHandler({BadHttpRequest.class, InvalidDataAccessApiUsageException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void handleBadRequest() {
     }

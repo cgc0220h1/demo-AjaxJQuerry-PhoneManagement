@@ -1,5 +1,6 @@
 package service;
 
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -16,9 +17,9 @@ public interface GenericService<T> {
 
     T findOne(Long id) throws NotFoundException;
 
-    T save(T entity);
+    T save(T entity) throws InvalidDataAccessApiUsageException;
 
-    void delete(T entity);
+    void delete(T entity) throws InvalidDataAccessApiUsageException;
 
-    void delete(Long id);
+    void delete(Long id) throws InvalidDataAccessApiUsageException;
 }

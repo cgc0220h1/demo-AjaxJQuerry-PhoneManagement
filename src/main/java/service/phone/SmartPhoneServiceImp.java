@@ -2,6 +2,7 @@ package service.phone;
 
 import model.SmartPhone;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -67,17 +68,17 @@ public class SmartPhoneServiceImp implements SmartPhoneService {
     }
 
     @Override
-    public SmartPhone save(SmartPhone smartPhone) {
+    public SmartPhone save(SmartPhone smartPhone) throws InvalidDataAccessApiUsageException {
         return smartPhoneRepository.save(smartPhone);
     }
 
     @Override
-    public void delete(SmartPhone smartPhone) {
+    public void delete(SmartPhone smartPhone) throws InvalidDataAccessApiUsageException {
         smartPhoneRepository.delete(smartPhone);
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Long id) throws InvalidDataAccessApiUsageException {
         smartPhoneRepository.deleteById(id);
     }
 }
