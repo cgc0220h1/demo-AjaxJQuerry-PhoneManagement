@@ -20,6 +20,9 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
+import repositories.SmartPhoneRepository;
+import service.phone.SmartPhoneService;
+import service.phone.SmartPhoneServiceImp;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -103,5 +106,10 @@ public class AppConfiguration implements ApplicationContextAware, WebMvcConfigur
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
+    }
+
+    @Bean
+    public SmartPhoneService smartPhoneService(SmartPhoneRepository smartPhoneRepository) {
+        return new SmartPhoneServiceImp(smartPhoneRepository);
     }
 }

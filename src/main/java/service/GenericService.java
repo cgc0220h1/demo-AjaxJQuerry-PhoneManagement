@@ -1,5 +1,6 @@
 package service;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
@@ -10,7 +11,7 @@ public interface GenericService<T> {
 
     List<T> findAll(Sort sort);
 
-    List<T> findAll(Pageable pageable);
+    Page<T> findAll(Pageable pageable);
 
     T findOne(Long id);
 
