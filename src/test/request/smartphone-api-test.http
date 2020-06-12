@@ -24,9 +24,19 @@ Content-Type: application/json
 {
   "brand": "nokia",
   "model": "nokia 6610",
-  "price" : 10000000
+  "price": 10000000
 }
 
+###Create new Phone with exist id
+POST http://localhost:8080/api/phones/create
+Content-Type: application/json
+
+{
+  "id": 1,
+  "brand": "nokia",
+  "model": "nokia 6610",
+  "price": 10000000
+}
 
 
 
