@@ -8,8 +8,14 @@ GET http://localhost:8080/api/phones/1
 ###Find One Phone Non-exist
 GET http://localhost:8080/api/phones/99999999
 
+###Get All Phones By Page
+GET http://localhost:8080/api/phones?page=1
 
+###Get All Phones By Page And Size
+GET http://localhost:8080/api/phones?page=0&size=2
 
+###Get All Phones By Page, Size, Sort
+GET http://localhost:8080/api/phones?page=0&size=5&sort=brand
 
 
 
