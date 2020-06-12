@@ -1,11 +1,13 @@
 package api;
 
+import javassist.tools.web.BadHttpRequest;
 import model.SmartPhone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import service.phone.SmartPhoneService;
@@ -35,8 +37,22 @@ public class SmartPhoneAPI {
         return new ResponseEntity<>(smartPhone, HttpStatus.FOUND);
     }
 
+    @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public SmartPhone createOne(@RequestBody SmartPhone smartPhone) throws BadHttpRequest {
+        if (smartPhone.getId() != null) {
+            throw new BadHttpRequest();
+        }
+        return smartPhoneService.save(smartPhone);
+    }
+
     @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void handleNotFoundException() {
+    }
+
+    @ExceptionHandler(BadHttpRequest.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public void handleBadRequest() {
     }
 }

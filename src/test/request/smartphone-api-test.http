@@ -17,6 +17,15 @@ GET http://localhost:8080/api/phones?page=0&size=2
 ###Get All Phones By Page, Size, Sort
 GET http://localhost:8080/api/phones?page=0&size=5&sort=brand
 
+###Create new Phone with null id
+POST http://localhost:8080/api/phones/create
+Content-Type: application/json
+
+{
+  "brand": "nokia",
+  "model": "nokia 6610",
+  "price" : 10000000
+}
 
 
 
