@@ -1,0 +1,14 @@
+#Get All Phones
+GET http://localhost:8080/api/phones
+Accept: application/json
+
+
+
+
+
+
+
+
+
+
+

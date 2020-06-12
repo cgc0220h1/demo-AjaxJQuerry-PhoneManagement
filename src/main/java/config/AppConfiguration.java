@@ -31,7 +31,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("controllers")
+@ComponentScan({"controllers","api"})
 @EnableJpaRepositories("repositories")
 public class AppConfiguration implements ApplicationContextAware, WebMvcConfigurer {
     private ApplicationContext applicationContext;
