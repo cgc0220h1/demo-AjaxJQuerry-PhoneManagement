@@ -3,7 +3,7 @@ GET http://localhost:8080/api/phones
 Accept: application/json
 
 ###Find One Phone Exist
-GET http://localhost:8080/api/phones/1
+GET http://localhost:8080/api/phones/3
 
 ###Find One Phone Non-exist
 GET http://localhost:8080/api/phones/99999999

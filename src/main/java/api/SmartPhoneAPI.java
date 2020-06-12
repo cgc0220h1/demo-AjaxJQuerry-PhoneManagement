@@ -26,16 +26,14 @@ public class SmartPhoneAPI {
         this.smartPhoneService = smartPhoneService;
     }
 
-    @GetMapping()
-    public ResponseEntity<List<SmartPhone>> getAllPhones(@PageableDefault(size = 5, sort = "id") Pageable pageable) throws NotFoundException {
-        Page<SmartPhone> phonePage = smartPhoneService.findAll(pageable);
-        return new ResponseEntity<>(phonePage.getContent(), HttpStatus.FOUND);
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<SmartPhone> getAllPhones(@PageableDefault(size = 5, sort = "id") Pageable pageable) throws NotFoundException {
+        return smartPhoneService.findAll(pageable).getContent();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<SmartPhone> getOne(@PathVariable("id") Long id) throws NotFoundException {
-        SmartPhone smartPhone = smartPhoneService.findOne(id);
-        return new ResponseEntity<>(smartPhone, HttpStatus.FOUND);
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public SmartPhone getOne(@PathVariable("id") Long id) throws NotFoundException {
+        return smartPhoneService.findOne(id);
     }
 
     @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
