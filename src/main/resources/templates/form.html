@@ -8,7 +8,8 @@
 <h5 class="title" th:text="${title}">Tên Form</h5>
 <p class="title" id="message-success"></p>
 <form class="align-items-center" id="phone-form">
-    <input type="text" hidden th:value="${phone.id}">
+    <label for="phone-id">Phone ID</label>
+    <input type="text" hidden th:value="${phone.id}" id="phone-id">
     <div class="form-group">
         <label for="phone-model">Tên sản phẩm</label>
         <input type="text" id="phone-model" th:value="${phone.model}">
@@ -28,22 +29,37 @@
 <script>
     $(document).ready(function () {
         $("#phone-form").submit(function (event) {
+            let id = $("#phone-id").val();
             let model = $("#phone-model").val();
             let brand = $("#phone-brand").val();
             let price = $("#phone-price").val();
-            let json = {
-                "model": model,
-                "brand": brand,
-                "price": price
+            let json;
+            if (id === "") {
+                json = {
+                    "model": model,
+                    "brand": brand,
+                    "price": price
+                }
+            } else {
+                json = {
+                    "id": id,
+                    "model": model,
+                    "brand": brand,
+                    "price": price
+                }
             }
+
             $.ajax({
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                type: "POST",
+                type: "[[${requestMethod}]]",
                 data: JSON.stringify(json),
-                url: "/api/phones/create",
+                url: "[[${api}]]",
+                error: function (smartphone) {
+                    $("#message-success").html("Có lỗi xảy ra");
+                },
                 success: function (smartphone) {
                     let respContent = "";
                     respContent += "<span class='success'> Điện thoại sau đã được thêm mới: [";

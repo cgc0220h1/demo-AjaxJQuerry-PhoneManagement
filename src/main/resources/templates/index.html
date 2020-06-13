@@ -16,16 +16,21 @@
             <td>STT</td>
             <td>Tên</td>
             <td>Hãng</td>
-            <td>Giá</td>
+            <td colspan="2">Giá</td>
         </tr>
         </thead>
         <tbody id="phone-list">
         <th:block th:each="phone, iterStat : ${phonePage}">
             <tr>
                 <td th:text="${iterStat.count}"></td>
-                <td th:text="${phone.model}"></td>
+                <td>
+                    <a th:href="@{/phones/__${phone.id}__}" th:text="${phone.model}"></a>
+                </td>
                 <td th:text="${phone.brand}"></td>
                 <td th:text="${phone.price}"></td>
+                <td>
+                    <button class="btn btn-primary" >Xoá</button>
+                </td>
             </tr>
         </th:block>
         </tbody>
@@ -42,5 +47,10 @@
         </th:block>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("")
+    })
+</script>
 </body>
 </html>
