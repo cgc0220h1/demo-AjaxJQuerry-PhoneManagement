@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Danh sách điện thoại</title>
+</head>
+<body>
+<h3 class="title" style="text-align: center">Danh sách điện thoại</h3>
+<div class="container">
+    <div class="btn-link align-items-center">
+        <a th:href="@{/phones/create}">Thêm mới</a>
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <td>STT</td>
+            <td>Tên</td>
+            <td>Hãng</td>
+            <td>Giá</td>
+        </tr>
+        </thead>
+        <tbody id="phone-list">
+        <th:block th:each="phone, iterStat : ${phonePage}">
+            <tr>
+                <td th:text="${iterStat.count}"></td>
+                <td th:text="${phone.model}"></td>
+                <td th:text="${phone.brand}"></td>
+                <td th:text="${phone.price}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <div class="pagination-lg">
+        <th:block th:if="${phonePage.hasPrevious()}">
+            <a th:href="@{/phones(page=${phonePage.number - 1})}"><</a>
+        </th:block>
+        <th:block th:each="page : ${#numbers.sequence(1,(phonePage.totalPages - 1))}">
+            <a th:href="@{/phones(page=${page})}" th:text="${page}"></a>
+        </th:block>
+        <th:block th:if="${phonePage.hasNext()}">
+            <a th:href="@{/phones(page=${phonePage.number + 1})}"> > </a>
+        </th:block>
+    </div>
+</div>
+</body>
+</html>

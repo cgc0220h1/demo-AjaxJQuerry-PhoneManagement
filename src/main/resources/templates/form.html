@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <meta charset="UTF-8">
+    <title>Thêm mới</title>
+</head>
+<body>
+<h5 class="title" th:text="${title}">Tên Form</h5>
+<p class="title" id="message-success"></p>
+<form class="align-items-center" id="phone-form">
+    <input type="text" hidden th:value="${phone.id}">
+    <div class="form-group">
+        <label for="phone-model">Tên sản phẩm</label>
+        <input type="text" id="phone-model" th:value="${phone.model}">
+    </div>
+    <div class="form-group">
+        <label for="phone-brand">Hãng sản phẩm</label>
+        <input type="text" id="phone-brand" th:field="${phone.brand}">
+    </div>
+    <div class="form-group">
+        <label for="phone-price">Giá sản phẩm</label>
+        <input type="text" id="phone-price" th:field="${phone.price}">
+    </div>
+    <button type="submit" class="btn btn-primary" th:text="${title}"></button>
+</form>
+<a href="/">Quay lại</a>
+</body>
+<script>
+    $(document).ready(function () {
+        $("#phone-form").submit(function (event) {
+            let model = $("#phone-model").val();
+            let brand = $("#phone-brand").val();
+            let price = $("#phone-price").val();
+            let json = {
+                "model": model,
+                "brand": brand,
+                "price": price
+            }
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                data: JSON.stringify(json),
+                url: "/api/phones/create",
+                success: function (smartphone) {
+                    let respContent = "";
+                    respContent += "<span class='success'> Điện thoại sau đã được thêm mới: [";
+                    respContent += smartphone.brand + ", ";
+                    respContent += smartphone.model + ", ";
+                    respContent += smartphone.price;
+                    respContent += "]</span>";
+                    $("#message-success").html(respContent);
+                }
+            });
+            event.preventDefault();
+        })
+    })
+</script>
+</html>
