@@ -33,20 +33,11 @@
             let model = $("#phone-model").val();
             let brand = $("#phone-brand").val();
             let price = $("#phone-price").val();
-            let json;
-            if (id === "") {
-                json = {
-                    "model": model,
-                    "brand": brand,
-                    "price": price
-                }
-            } else {
-                json = {
-                    "id": id,
-                    "model": model,
-                    "brand": brand,
-                    "price": price
-                }
+            let json = {
+                "id" : id === "" ? null : id,
+                "model": model,
+                "brand": brand,
+                "price": price
             }
 
             $.ajax({
