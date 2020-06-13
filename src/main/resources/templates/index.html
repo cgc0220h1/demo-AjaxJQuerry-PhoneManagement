@@ -29,7 +29,10 @@
                 <td th:text="${phone.brand}"></td>
                 <td th:text="${phone.price}"></td>
                 <td>
-                    <button class="btn btn-primary" >Xoá</button>
+                    <button class="btn btn-primary"
+                            th:value="${phone.id}"
+                            id="button-delete">Xoá
+                    </button>
                 </td>
             </tr>
         </th:block>
@@ -49,7 +52,25 @@
 </div>
 <script>
     $(document).ready(function () {
-        $("")
+        $("#button-delete").click(function (event) {
+            let button = $(this)
+            let id = button.val();
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                url: "/api/phones/delete/" + id,
+                type: "DELETE",
+                error: function () {
+                    console.log("Có lỗi xảy ra");
+                },
+                success: function () {
+                    button.parent().parent().remove();
+                }
+            });
+            event.preventDefault();
+        })
     })
 </script>
 </body>
