@@ -30,8 +30,7 @@
                 <td th:text="${phone.price}"></td>
                 <td>
                     <button class="btn btn-primary"
-                            th:value="${phone.id}"
-                            id="button-delete">Xoá
+                            th:value="${phone.id}">Xoá
                     </button>
                 </td>
             </tr>
@@ -52,7 +51,7 @@
 </div>
 <script>
     $(document).ready(function () {
-        $("#button-delete").click(function (event) {
+        $(".btn").click(function (event) {
             let button = $(this)
             let id = button.val();
             $.ajax({
